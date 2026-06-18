@@ -2,37 +2,54 @@
 layout: base.njk
 ---
 
-<article class="case-study-page">
+<article>
 
-  <header class="cs-header">
-    <div class="cs-header__meta">
-      <span class="tag">{{ category }}</span>
-      {% if year %}<span class="tag tag--muted">{{ year }}</span>{% endif %}
+  <!-- Hero: two-column split -->
+  <header class="cs-hero">
+    <div class="cs-hero__left">
+      <div class="cs-hero__meta">
+        <span class="tag">{{ category }}</span>
+        {% if year %}<span class="tag">{{ year }}</span>{% endif %}
+      </div>
+      <h1 class="cs-hero__title">{{ title }}</h1>
+      {% if subtitle %}<p class="cs-hero__subtitle">{{ subtitle }}</p>{% endif %}
+      <dl class="cs-meta-grid">
+        {% if role %}<div><dt>Role</dt><dd>{{ role }}</dd></div>{% endif %}
+        {% if organisation %}<div><dt>Organisation</dt><dd>{{ organisation }}</dd></div>{% endif %}
+        {% if duration %}<div><dt>Duration</dt><dd>{{ duration }}</dd></div>{% endif %}
+        {% if team %}<div class="cs-meta-grid__wide"><dt>Team</dt><dd>{{ team }}</dd></div>{% endif %}
+        {% if methods %}<div class="cs-meta-grid__wide"><dt>Methods</dt><dd>{{ methods }}</dd></div>{% endif %}
+      </dl>
     </div>
-    <h1 class="cs-header__title">{{ title }}</h1>
-    {% if subtitle %}<p class="cs-header__subtitle">{{ subtitle }}</p>{% endif %}
-
-    <dl class="cs-meta-grid">
-      {% if role %}<div><dt>Role</dt><dd>{{ role }}</dd></div>{% endif %}
-      {% if team %}<div><dt>Team</dt><dd>{{ team }}</dd></div>{% endif %}
-      {% if organisation %}<div><dt>Organisation</dt><dd>{{ organisation }}</dd></div>{% endif %}
-      {% if duration %}<div><dt>Duration</dt><dd>{{ duration }}</dd></div>{% endif %}
-      {% if methods %}<div class="cs-meta-grid__wide"><dt>Methods</dt><dd>{{ methods }}</dd></div>{% endif %}
-    </dl>
+    <div class="cs-hero__right">
+      {% if cover_image %}<img src="{{ cover_image }}" alt="{{ title }}">{% endif %}
+    </div>
   </header>
 
-  {% if cover_image %}
-  <div class="cs-cover">
-    <img src="{{ cover_image }}" alt="{{ title }} cover">
+  <!-- Stat highlight if defined -->
+  {% if outcome_stat %}
+  <div class="cs-stat">
+    <span class="cs-stat__number">{{ outcome_stat }}</span>
+    <p class="cs-stat__label">{{ outcome_label }}</p>
   </div>
   {% endif %}
 
-  <div class="cs-body">
+  <!-- Main markdown body -->
+  <div class="cs-content">
     {{ content | safe }}
   </div>
 
+  <!-- Solution screens image grid if defined -->
+  {% if solution_images and solution_images.length %}
+  <div class="cs-image-grid cs-image-grid--screens">
+    {% for img in solution_images %}
+    <img src="{{ img }}" alt="{{ title }} screen {{ loop.index }}">
+    {% endfor %}
+  </div>
+  {% endif %}
+
 </article>
 
-<nav class="cs-nav">
-  <a href="/work/" class="cs-nav__back">← All work</a>
+<nav class="cs-back">
+  <a href="/work/">← All work</a>
 </nav>
