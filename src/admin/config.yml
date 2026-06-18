@@ -1,0 +1,27 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "src/images"
+public_folder: "/images"
+
+collections:
+  - name: "case-studies"
+    label: "Case Studies"
+    folder: "src/case-studies"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+      - { label: "Summary (shown on cards)", name: "summary", widget: "text" }
+      - { label: "Category", name: "category", widget: "string", default: "UX Design" }
+      - { label: "Year", name: "year", widget: "string", required: false }
+      - { label: "Role", name: "role", widget: "string", required: false }
+      - { label: "Team", name: "team", widget: "string", required: false }
+      - { label: "Organisation", name: "organisation", widget: "string", required: false }
+      - { label: "Duration", name: "duration", widget: "string", required: false }
+      - { label: "Methods", name: "methods", widget: "text", required: false }
+      - { label: "Cover Image", name: "cover_image", widget: "image", required: false }
+      - { label: "NDA Protected", name: "nda", widget: "boolean", default: false }
+      - { label: "Body", name: "body", widget: "markdown" }

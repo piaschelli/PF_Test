@@ -1,0 +1,66 @@
+---
+layout: base.njk
+title: Home
+---
+
+<section class="hero">
+  <div class="hero__inner">
+    <p class="hero__label">UX Design & Product Strategy</p>
+    <h1 class="hero__headline">Making complexity<br><em>navigable.</em></h1>
+    <p class="hero__body">I work at the intersection of user research, system design, and business strategy — turning ambiguous problems into decisions that hold up under pressure.</p>
+    <a href="/work/" class="btn">View work</a>
+  </div>
+</section>
+
+<section class="selected">
+  <div class="section-header">
+    <span class="section-label">Selected work</span>
+  </div>
+
+  <div class="work-grid">
+  {%- for post in collections.caseStudies | reverse -%}
+    <a href="{{ post.url }}" class="work-card">
+      {% if post.data.cover_image %}
+      <div class="work-card__image">
+        <img src="{{ post.data.cover_image }}" alt="{{ post.data.title }}">
+      </div>
+      {% else %}
+      <div class="work-card__image work-card__image--empty"></div>
+      {% endif %}
+      <div class="work-card__body">
+        <div class="work-card__meta">
+          <span class="tag">{{ post.data.category }}</span>
+          {% if post.data.year %}<span class="tag tag--muted">{{ post.data.year }}</span>{% endif %}
+        </div>
+        <h2 class="work-card__title">{{ post.data.title }}</h2>
+        <p class="work-card__summary">{{ post.data.summary }}</p>
+      </div>
+    </a>
+  {%- endfor -%}
+  </div>
+</section>
+
+<section class="approach">
+  <div class="approach__inner">
+    <div class="approach__label">
+      <span class="section-label">How I work</span>
+    </div>
+    <div class="approach__content">
+      <div class="approach__item">
+        <span class="approach__num">01</span>
+        <h3>Research before solutions</h3>
+        <p>I run structured research to surface what's actually happening — not what stakeholders assume. The problem definition is half the work.</p>
+      </div>
+      <div class="approach__item">
+        <span class="approach__num">02</span>
+        <h3>Strategy informs design</h3>
+        <p>I bring a business lens to every UX decision. A feature that users love but the business can't sustain isn't a solution — it's a delay.</p>
+      </div>
+      <div class="approach__item">
+        <span class="approach__num">03</span>
+        <h3>Iteration over perfection</h3>
+        <p>I prototype early, test fast, and hold concepts loosely. The goal is learning — not being right the first time.</p>
+      </div>
+    </div>
+  </div>
+</section>

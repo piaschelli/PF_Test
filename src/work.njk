@@ -1,0 +1,34 @@
+---
+layout: base.njk
+title: Work
+permalink: /work/
+---
+
+<section class="page-header">
+  <p class="section-label">Work</p>
+  <h1>Selected projects</h1>
+  <p class="page-header__sub">End-to-end UX process — from research and framing to tested, shipped product.</p>
+</section>
+
+<div class="work-grid work-grid--full">
+{%- for post in collections.caseStudies | reverse -%}
+  <a href="{{ post.url }}" class="work-card">
+    {% if post.data.cover_image %}
+    <div class="work-card__image">
+      <img src="{{ post.data.cover_image }}" alt="{{ post.data.title }}">
+    </div>
+    {% else %}
+    <div class="work-card__image work-card__image--empty"></div>
+    {% endif %}
+    <div class="work-card__body">
+      <div class="work-card__meta">
+        <span class="tag">{{ post.data.category }}</span>
+        {% if post.data.year %}<span class="tag tag--muted">{{ post.data.year }}</span>{% endif %}
+      </div>
+      <h2 class="work-card__title">{{ post.data.title }}</h2>
+      <p class="work-card__summary">{{ post.data.summary }}</p>
+      <span class="work-card__link">View case study →</span>
+    </div>
+  </a>
+{%- endfor -%}
+</div>

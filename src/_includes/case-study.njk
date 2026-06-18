@@ -1,0 +1,38 @@
+---
+layout: base.njk
+---
+
+<article class="case-study-page">
+
+  <header class="cs-header">
+    <div class="cs-header__meta">
+      <span class="tag">{{ category }}</span>
+      {% if year %}<span class="tag tag--muted">{{ year }}</span>{% endif %}
+    </div>
+    <h1 class="cs-header__title">{{ title }}</h1>
+    {% if subtitle %}<p class="cs-header__subtitle">{{ subtitle }}</p>{% endif %}
+
+    <dl class="cs-meta-grid">
+      {% if role %}<div><dt>Role</dt><dd>{{ role }}</dd></div>{% endif %}
+      {% if team %}<div><dt>Team</dt><dd>{{ team }}</dd></div>{% endif %}
+      {% if organisation %}<div><dt>Organisation</dt><dd>{{ organisation }}</dd></div>{% endif %}
+      {% if duration %}<div><dt>Duration</dt><dd>{{ duration }}</dd></div>{% endif %}
+      {% if methods %}<div class="cs-meta-grid__wide"><dt>Methods</dt><dd>{{ methods }}</dd></div>{% endif %}
+    </dl>
+  </header>
+
+  {% if cover_image %}
+  <div class="cs-cover">
+    <img src="{{ cover_image }}" alt="{{ title }} cover">
+  </div>
+  {% endif %}
+
+  <div class="cs-body">
+    {{ content | safe }}
+  </div>
+
+</article>
+
+<nav class="cs-nav">
+  <a href="/work/" class="cs-nav__back">← All work</a>
+</nav>
